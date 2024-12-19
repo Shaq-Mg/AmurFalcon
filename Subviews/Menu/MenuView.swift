@@ -1,5 +1,5 @@
 //
-//  SideMenuView.swift
+//  MenuView.swift
 //  AmurFalcon
 //
 //  Created by Shaquille McGregor on 19/12/2024.
@@ -9,61 +9,50 @@ import SwiftUI
 
 struct MenuView: View {
     @State private var selectedOption: Page? = nil
+    @Binding var isSeachViewHidden: Bool
     @Binding var isMenuShowing: Bool
     @Binding var selectedTab: Int
+    
     var body: some View {
-        ZStack {
-            if isMenuShowing {
-                Rectangle()
-                    .foregroundStyle(.ultraThinMaterial)
-                    .ignoresSafeArea()
-                    .onTapGesture { isMenuShowing.toggle() }
-                HStack {
-                    VStack(alignment: .leading, spacing: 32) {
-                        menuHeader
-                        VStack {
-                            
-                        }
-                        ForEach(Page.allCases) { page in
-                            Button {
-                                selectedOption = page
-                                selectedTab = page.rawValue
-                                isMenuShowing = false
-                            } label: {
-                                Text(page.title)
-                            }
-                        }
-                        Spacer()
+        VStack(alignment: .leading, spacing: 32) {
+            ForEach(Page.allCases) { page in
+                Button {
+                    withAnimation(.easeInOut) {
+                        selectedOption = page
+                        selectedTab = page.rawValue
+                        isMenuShowing = false
                     }
-                    .padding()
-                    .frame(width: 270, alignment: .leading)
-                    .background(.white)
-                    Spacer()
+                } label: {
+                    VStack(spacing: 4) {
+                        Text(page.title)
+                            .font(.system(size: 24))
+                        Capsule()
+                            .fill(selectedTab == page.rawValue ? Color("background") : .clear)
+                            .frame(width: 72, height: 3)
+                    }
                 }
-                .transition(.move(edge: .leading))
             }
+            Divider()
+            
+            Button {
+                
+            } label: {
+                HStack {
+                    Text("United Kingdomw (GBP £)")
+                    Image(systemName: "chevron.down")
+                }
+                .foregroundStyle(Color(.label))
+            }
+
         }
-        .animation(.easeInOut, value: isMenuShowing)
+        .padding()
+        .frame(height: UIScreen.main.bounds.height / 1.5)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.white)
+        .transition(.move(edge: .bottom))
     }
 }
 
 #Preview {
-    MenuView(isMenuShowing: .constant(true), selectedTab: .constant(0))
+    MenuView(isSeachViewHidden: .constant(false), isMenuShowing: .constant(true), selectedTab: .constant(0))
 }
-
-extension MenuView {
-    private var menuHeader: some View {
-        VStack {
-            HStack(spacing: 16) {
-                AnimatedMenuView(isMenuShowing: $isMenuShowing)
-                
-                Text("Amur falcon".uppercased())
-                    .font(.headline)
-                    .foregroundStyle(.secondary)
-                Spacer()
-            }
-            Divider()
-        }
-    }
-}
-

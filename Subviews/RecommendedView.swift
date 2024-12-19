@@ -9,7 +9,14 @@ import SwiftUI
 
 struct RecommendedView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView(.horizontal) {
+            HStack(spacing: 12) {
+                ForEach(0..<4) { image in
+                    Rectangle()
+                        .frame(width: UIScreen.main.bounds.width / 2 - 40, height: 180, alignment: .leading)
+                }
+            }
+        }
     }
 }
 
