@@ -24,7 +24,6 @@ struct MenuHeaderView: View {
                 }
             Image(systemName: "bag")
         }
-        .padding(.horizontal)
         .font(.system(size: 24, weight: .semibold))
     }
 }

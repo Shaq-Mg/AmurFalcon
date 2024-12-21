@@ -15,16 +15,17 @@ struct HomeView: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 14) {
-                ScrollView {
+                ScrollView(.vertical, showsIndicators: false) {
                     Text("Free worldwide delivery over £200".uppercased())
                         .font(.headline)
-                        .foregroundStyle(Color("icon"))
+                        .foregroundStyle(Color("theme"))
                         .padding()
                         .frame(maxWidth: .infinity)
                         .background(Color("prime"))
                     
                     
                     MenuHeaderView(isSeachViewHidden: $isSeachViewHidden, isMenuShowing: $isShowMenu)
+                        .padding(.horizontal)
                     Rectangle()
                         .frame(maxWidth: .infinity)
                         .frame(height: UIScreen.main.bounds.height / 1.5)
@@ -36,6 +37,7 @@ struct HomeView: View {
                         .padding(.leading)
                     
                     RecommendedView()
+                        .padding(.leading)
                 }
             }
             if isShowMenu {

@@ -8,11 +8,20 @@
 import SwiftUI
 
 struct ShopHeaderView: View {
+    @Binding var isMenuShowing: Bool
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack(spacing: 12) {
+            AnimatedMenuView(isMenuShowing: $isMenuShowing)
+            Spacer()
+            Text("AMUR FALCON")
+            Spacer()
+            Image(systemName: "bag")
+        }
+        .font(.system(size: 24, weight: .semibold))
     }
 }
 
 #Preview {
-    ShopHeaderView()
+    ShopHeaderView(isMenuShowing: .constant(false))
 }

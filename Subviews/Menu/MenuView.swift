@@ -25,9 +25,10 @@ struct MenuView: View {
                 } label: {
                     VStack(spacing: 4) {
                         Text(page.title)
+                            .foregroundStyle(Color("icon"))
                             .font(.system(size: 24))
                         Capsule()
-                            .fill(selectedTab == page.rawValue ? Color("background") : .clear)
+                            .fill(selectedTab == page.rawValue ? Color(.label) : .clear)
                             .frame(width: 72, height: 3)
                     }
                 }

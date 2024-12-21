@@ -9,7 +9,17 @@ import SwiftUI
 
 struct SignUpButtonView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Sign me up".uppercased())
+            .fontWeight(.semibold)
+            .padding()
+            .frame(width: UIScreen.main.bounds.width - 40)
+            .frame(height: 36)
+            .background(.white)
+            .padding(.top, 18)
+            .overlay(alignment: .topTrailing) {
+                Image(systemName: "xmark.circle")
+                    .fontWeight(.semibold)
+            }
     }
 }
 

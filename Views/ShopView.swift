@@ -8,11 +8,35 @@
 import SwiftUI
 
 struct ShopView: View {
+    @Binding var isMenuShowing: Bool
+    let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 2)
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack(alignment: .top) {
+            Color.init(white: 0.95).ignoresSafeArea()
+            ShopHeaderView(isMenuShowing: $isMenuShowing)
+            .padding(.horizontal)
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 32) {
+                    ForEach(0..<8) { item in
+                        VStack(alignment: .leading, spacing: 6) {
+                            Rectangle()
+                                .frame(width: UIScreen.main.bounds.width / 2.5, height: 220)
+                            Text("Jacket 340".uppercased())
+                            
+                            Text("£280.00")
+                                .font(.caption)
+                        }
+                        .fontWeight(.semibold)
+                        .padding(.horizontal)
+                    }
+                }
+            }
+            .padding(.top, 64)
+        }
     }
 }
 
 #Preview {
-    ShopView()
+    ShopView(isMenuShowing: .constant(false))
 }

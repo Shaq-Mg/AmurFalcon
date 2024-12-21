@@ -9,22 +9,36 @@ import SwiftUI
 
 struct ClothingOptionList: View {
     @Binding var seletedOption: ClothingBarOptions
+    @Namespace var namespace
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 30) {
-                ForEach(ClothingBarOptions.allCases, id: \.self) { item in
-                    VStack {
-                        Text(item.title)
-                            .foregroundStyle(item == seletedOption ? .background : .prime)
-                        
-                        Capsule()
-                            .fill(item == seletedOption ? Color("background") : .clear)
-                            .frame(height: 3)
-                            .padding(.horizontal, -10)
-                        
-                    }
-                    .onTapGesture {
-                        self.seletedOption = item
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 30) {
+                    ForEach(ClothingBarOptions.allCases, id: \.self) { option in
+                        VStack {
+                            Text(option.title)
+                                .foregroundStyle(option == seletedOption ? .background : .prime)
+                            
+                            if option == seletedOption {
+                                Capsule()
+                                    .fill(Color("background"))
+                                    .matchedGeometryEffect(id: "option", in: namespace)
+                                    .frame(height: 3)
+                                    .padding(.horizontal, -10)
+                            } else {
+                                Capsule()
+                                    .fill(.clear)
+                                    .frame(height: 3)
+                                    .padding(.horizontal, -10)
+                            }
+                        }
+                        .onTapGesture {
+                            withAnimation(.easeInOut) {
+                                self.seletedOption = option
+                                proxy.scrollTo(option, anchor: .topTrailing)
+                            }
+                        }
+    //                    .frame(width: UIScreen.main.bounds.width / 4)
                     }
                 }
             }
