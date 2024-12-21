@@ -115,6 +115,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4606D96A2D1753E900F8ACFE /* Accessories */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Accessories;
+			sourceTree = "<group>";
+		};
 		462853512D13A31F00F283FE /* Menu */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				46169BE72D1388A200D61435 /* RecommendedView.swift */,
+				4606D96A2D1753E900F8ACFE /* Accessories */,
 				46C5EBF82D1302DE00FCC689 /* Buttons */,
 				46BBC5472D15F4AD00942AB4 /* Clothing */,
 				462853512D13A31F00F283FE /* Menu */,

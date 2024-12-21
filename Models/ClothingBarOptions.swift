@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK: Clothing data model
 enum ClothingBarOptions: Int, CaseIterable {
     case basics
     case hoodies
@@ -29,6 +30,31 @@ enum ClothingBarOptions: Int, CaseIterable {
         case .hoodies: return hoodedItems
         case .knitwear: return knittedItems
         case .outerwear: return outerwearItems
+            
+        }
+    }
+}
+
+// MARK: Accessories data model
+enum AccessorieBarOptions: Int, CaseIterable {
+    case headwear
+    case wallets
+    case bags
+    
+    var title: String {
+        switch self {
+        case .headwear: return "Headwear"
+        case .wallets: return "wallets"
+        case .bags: return "Bags"
+            
+        }
+    }
+    
+    var items: [Item] {
+        switch self {
+        case .headwear: return headwearItems
+        case .wallets: return walletItems
+        case .bags: return bagItems
             
         }
     }
