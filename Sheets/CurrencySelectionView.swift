@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SelectCurrencyView: View {
+struct CurrencySelectionView: View {
     @Binding var show: Bool
     let columns: [GridItem] = Array(repeating: GridItem(.flexible()), count: 4)
     
@@ -40,10 +40,10 @@ struct SelectCurrencyView: View {
 }
 
 #Preview {
-    SelectCurrencyView(show: .constant(false))
+    CurrencySelectionView(show: .constant(false))
 }
 
-extension SelectCurrencyView {
+extension CurrencySelectionView {
     private var currencyHeader: some View {
         HStack {
             Button("Cancel") {
