@@ -1,5 +1,5 @@
 //
-//  ItemDetailView.swift
+//  ProductDetailView.swift
 //  AmurFalcon
 //
 //  Created by Shaquille McGregor on 22/12/2024.
@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProductDetailView: View {
+    @State private var showFullDescription = false
     @State private var showSizeSheet = false
     @Binding var isMenuShowing: Bool
     var body: some View {
@@ -99,12 +100,14 @@ extension ProductDetailView {
     }
     
     private var descriptionSection: some View {
-        VStack(alignment: .leading, spacing: 18) {
+        VStack(alignment: .leading, spacing: 16) {
             Text("Product Description").bold()
-            Text("Delivered as part of the second drop of the Amur falcon Spring/Summer 2024 season, this black oversized hoodie was made available alongside more than 50 new apparel items. The")
-            Button("Read More") {
+            Text("Delivered as part of the second drop of the Amur falcon Spring/Summer 2024 season, this black oversized hoodie was made available alongside more than 50 new apparel items.")
+                .lineLimit(showFullDescription ? nil : 2)
+            
+            Button(showFullDescription ? "Show less" : "Read More") {
                 withAnimation(.easeInOut) {
-                    
+                    showFullDescription.toggle()
                 }
             }
             .bold()

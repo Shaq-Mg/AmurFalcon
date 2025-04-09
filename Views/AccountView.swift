@@ -33,7 +33,7 @@ struct AccountView: View {
                     .foregroundStyle(Color("icon"))
                 }
                 if showCurrencyOptions {
-                    SelectCurrencyView(show: $showCurrencyOptions)
+                    CurrencySelectionView(show: $showCurrencyOptions)
                         .padding(.top)
                 } else {
                     Button("Currency: £ GBP") {

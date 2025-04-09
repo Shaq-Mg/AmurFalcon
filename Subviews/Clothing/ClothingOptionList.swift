@@ -38,7 +38,6 @@ struct ClothingOptionList: View {
                                 proxy.scrollTo(option, anchor: .topTrailing)
                             }
                         }
-    //                    .frame(width: UIScreen.main.bounds.width / 4)
                     }
                 }
             }

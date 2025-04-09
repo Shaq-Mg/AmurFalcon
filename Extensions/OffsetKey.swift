@@ -1,5 +1,5 @@
 //
-//  OffetKey.swift
+//  OffsetKey.swift
 //  AmurFalcon
 //
 //  Created by Shaquille McGregor on 21/12/2024.

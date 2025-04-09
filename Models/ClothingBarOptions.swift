@@ -44,7 +44,7 @@ enum AccessorieBarOptions: Int, CaseIterable {
     var title: String {
         switch self {
         case .headwear: return "Headwear"
-        case .wallets: return "wallets"
+        case .wallets: return "Wallets"
         case .bags: return "Bags"
             
         }

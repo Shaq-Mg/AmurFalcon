@@ -26,9 +26,14 @@ struct HomeView: View {
                     
                     MenuHeaderView(isSeachViewHidden: $isSeachViewHidden, isMenuShowing: $isShowMenu)
                         .padding(.horizontal)
-                    Rectangle()
+                    TabView {
+                        ForEach(0...2, id: \.self) { image in
+                            Rectangle()
+                        }
+                    }
+                    .frame(height: UIScreen.main.bounds.height / 1.5)
                         .frame(maxWidth: .infinity)
-                        .frame(height: UIScreen.main.bounds.height / 1.5)
+                        .tabViewStyle(.page)
                     
                     Text("Recommended")
                         .font(.system(size: 25, weight: .semibold))

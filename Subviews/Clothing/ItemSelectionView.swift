@@ -13,7 +13,8 @@ struct ItemSelectionView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text(option.title)
-                .font(.title.bold())
+                .font(.title2.bold())
+                .foregroundStyle(Color("prime"))
                 .padding(.vertical)
             
             ForEach(option.items) { item in
@@ -28,11 +29,18 @@ struct ItemSelectionView: View {
                         
                         Text("Price: \(item.price)")
                             .font(.system(size: 14, weight: .semibold))
+                        Spacer()
                     }
                     Spacer()
                     
-                    Image(systemName: item.imageName)
-                        .font(.system(size: 78))
+                    TabView {
+                        ForEach(0...3, id: \.self) { image in
+                            Rectangle()
+                        }
+                    }
+                    .frame(width: 120, height: 180)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .tabViewStyle(.page)
                 }
                 
                 Divider()

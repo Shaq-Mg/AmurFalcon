@@ -20,8 +20,14 @@ struct ShopView: View {
                 LazyVGrid(columns: columns, spacing: 32) {
                     ForEach(0..<8) { item in
                         VStack(alignment: .leading, spacing: 6) {
-                            Rectangle()
-                                .frame(width: UIScreen.main.bounds.width / 2.5, height: 220)
+                            TabView {
+                                ForEach(0...3, id: \.self) { image in
+                                    Rectangle()
+                                }
+                            }
+                            .frame(width: UIScreen.main.bounds.width / 2.5, height: 220)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .tabViewStyle(.page)
                             Text("Jacket 340".uppercased())
                             
                             Text("£280.00")

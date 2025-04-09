@@ -19,7 +19,7 @@ struct ClothingView: View {
                     Divider()
                         .padding(.horizontal, 16), alignment: .bottom)
             
-            ScrollView {
+            ScrollView(.vertical, showsIndicators: false) {
                 ItemSelectionView(option: selectedOption)
             }
         }
