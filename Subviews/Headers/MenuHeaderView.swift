@@ -16,12 +16,15 @@ struct MenuHeaderView: View {
             Spacer()
             Text("AMUR FALCON")
             Spacer()
-            Image(systemName: "magnifyingglass")
-                .onTapGesture {
-                    withAnimation(.easeInOut(duration: 0.5)) {
-                        isSeachViewHidden.toggle()
-                    }
+            Button {
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    isSeachViewHidden.toggle()
                 }
+            } label: {
+                Image(systemName: "magnifyingglass")
+                    .foregroundStyle(Color("prime"))
+            }
+            
             Image(systemName: "bag")
         }
         .font(.system(size: 24, weight: .semibold))

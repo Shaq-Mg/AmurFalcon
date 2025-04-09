@@ -49,6 +49,7 @@ struct AccountView: View {
             .fullScreenCover(isPresented: $showAboutView) {
                 AboutView()
             }
+            .navigationBarBackButtonHidden()
         }
     }
 }

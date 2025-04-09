@@ -8,53 +8,42 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var isSeachViewHidden = true
     @State private var selectedTab = 0
-    @State private var isShowMenu = false
+    @Binding var isShowMenu: Bool
+    @Binding var isSeachViewHidden: Bool
     
     var body: some View {
-        ZStack(alignment: .bottom) {
-            VStack(spacing: 14) {
-                ScrollView(.vertical, showsIndicators: false) {
-                    Text("Free worldwide delivery over £200".uppercased())
-                        .font(.headline)
-                        .foregroundStyle(Color("theme"))
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(Color("prime"))
-                    
-                    
-                    MenuHeaderView(isSeachViewHidden: $isSeachViewHidden, isMenuShowing: $isShowMenu)
-                        .padding(.horizontal)
-                    TabView {
-                        ForEach(0...2, id: \.self) { image in
-                            Rectangle()
+        ZStack {
+            ScrollView(.vertical, showsIndicators: false) {
+                Text("Free worldwide delivery over £200".uppercased())
+                    .font(.headline)
+                    .foregroundStyle(Color("theme"))
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color("prime"))
+                
+                MenuHeaderView(isSeachViewHidden: $isSeachViewHidden, isMenuShowing: $isShowMenu)
+                    .padding(.horizontal)
+            ZStack(alignment: .bottom) {
+                VStack(spacing: 14) {
+                        TabView {
+                            ForEach(0...2, id: \.self) { image in
+                                Rectangle()
+                            }
                         }
-                    }
-                    .frame(height: UIScreen.main.bounds.height / 1.5)
+                        .frame(height: UIScreen.main.bounds.height / 1.5)
                         .frame(maxWidth: .infinity)
                         .tabViewStyle(.page)
-                    
-                    Text("Recommended")
-                        .font(.system(size: 25, weight: .semibold))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.top, 24)
-                        .padding(.leading)
-                    
-                    RecommendedView()
-                        .padding(.leading)
-                }
-            }
-            if isShowMenu {
-                MenuView(isSeachViewHidden: $isSeachViewHidden, isMenuShowing: $isShowMenu, selectedTab: $selectedTab)
-                    .transition(.move(edge: .bottom))
-                    .ignoresSafeArea(edges: .bottom)
-            }
-            if !isSeachViewHidden {
-                withAnimation(.easeInOut) {
-                    SearchBarView(isSeachViewHidden: $isSeachViewHidden)
-                        .transition(.move(edge: .bottom))
-                        .ignoresSafeArea(edges: .bottom)
+                        
+                        Text("Recommended")
+                            .font(.system(size: 25, weight: .semibold))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top, 24)
+                            .padding(.leading)
+                        
+                        RecommendedView()
+                            .padding(.leading)
+                    }
                 }
             }
         }
@@ -63,6 +52,6 @@ struct HomeView: View {
 
 #Preview {
     NavigationStack {
-        HomeView()
+        HomeView(isShowMenu: .constant(false), isSeachViewHidden: .constant(false))
     }
 }

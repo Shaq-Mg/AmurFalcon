@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct MenuRowView: View {
+    let page: Page
+    @Binding var selectedPage: Page?
+    
+    private var isSelected: Bool {
+        return selectedPage == page
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(page.title)
+                .foregroundStyle(Color("icon"))
+                .font(.system(size: 24))
+        }
     }
 }
 
 #Preview {
-    MenuRowView()
+    MenuRowView(page: .footwear, selectedPage: .constant(.footwear))
 }

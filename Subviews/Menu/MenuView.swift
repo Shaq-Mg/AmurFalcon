@@ -25,11 +25,12 @@ struct MenuView: View {
                         isMenuShowing = false
                     }
                 } label: {
-                    VStack(spacing: 4) {
+                    HStack(spacing: 12) {
                         MenuRowView(page: page, selectedPage: $selectedOption)
-                        Capsule()
-                            .fill(selectedTab == page.rawValue ? Color(.label) : .clear)
-                            .frame(width: 72, height: 3)
+                        Image(systemName: "checkmark")
+                            .fontWeight(.semibold)
+                            .imageScale(.large)
+                            .foregroundStyle(selectedTab == page.rawValue ? Color(.label) : .clear)
                     }
                 }
             }
@@ -50,6 +51,7 @@ struct MenuView: View {
         .frame(height: UIScreen.main.bounds.height / 1.3)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(.white)
+        .animation(.easeInOut, value: selectedOption)
         .transition(.move(edge: .bottom))
     }
 }

@@ -16,7 +16,6 @@ struct BottomMenuHeader: View {
                 .frame(width: 48, height: 48)
                 .background(.secondary)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.vertical)
             
             VStack(alignment: .leading, spacing: 6) {
                 Text("Kobe")

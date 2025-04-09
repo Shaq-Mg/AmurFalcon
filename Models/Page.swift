@@ -13,7 +13,6 @@ enum Page: Int, Hashable, CaseIterable {
     case clothing
     case accessories
     case footwear
-    case gift
     case account
     
     var title: String {
@@ -22,7 +21,6 @@ enum Page: Int, Hashable, CaseIterable {
         case .clothing: return "Clothing"
         case .accessories: return "Accessories"
         case .footwear: return "Footwear"
-        case .gift: return "Gift Card"
         case .account: return "Account"
             
         }

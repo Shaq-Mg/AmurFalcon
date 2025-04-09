@@ -21,32 +21,30 @@ struct SearchBarView: View {
                 TextField("Search...", text: $searchText)
                     .font(.system(size: 20))
             }
+            .overlay(alignment: .topTrailing, content: {
+                Button {
+                    withAnimation(.easeOut(duration: 0.5)) {
+                        isSeachViewHidden.toggle()
+                    }
+                } label: {
+                    Image(systemName: "xmark")
+                        .padding(.bottom, 44)
+                }
+                .foregroundStyle(Color("background"))
+                .font(.system(size: 18, weight: .bold))
+            })
             
             RoundedRectangle(cornerRadius: 2)
                 .frame(width: isAnimated ? UIScreen.main.bounds.width - 32 : 0, height: 8, alignment: .leading)
                 .foregroundStyle(Color("background"))
             
-            ScrollView {
-                
-            }
+            Spacer()
         }
         .frame(width: UIScreen.main.bounds.width - 32)
         .font(.system(size: 24, weight: .semibold))
         .onAppear {
             withAnimation(.easeIn(duration: 2.0)) {
                 isAnimated = true
-            }
-        }
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                Image(systemName: "xmark")
-                    .onTapGesture {
-                        withAnimation(.easeOut(duration: 0.5)) {
-                            isSeachViewHidden.toggle()
-                        }
-                    }
-                    .foregroundStyle(Color("background"))
-                    .font(.system(size: 18, weight: .bold))
             }
         }
     }
