@@ -1,5 +1,5 @@
 //
-//  SideMenuView.swift
+//  MenuView.swift
 //  AmurFalcon
 //
 //  Created by Shaquille McGregor on 19/12/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BottomMenuView: View {
+struct MenuView: View {
     @State private var selectedOption: Page? = nil
     @Binding var isSeachViewHidden: Bool
     @Binding var isMenuShowing: Bool
@@ -15,7 +15,8 @@ struct BottomMenuView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
-            SideMenuHeader()
+            BottomMenuHeader()
+            Divider()
             ForEach(Page.allCases) { page in
                 Button {
                     withAnimation(.easeInOut) {
@@ -25,12 +26,11 @@ struct BottomMenuView: View {
                     }
                 } label: {
                     VStack(spacing: 4) {
-                        MenuRowView(page: page)
+                        MenuRowView(page: page, selectedPage: $selectedOption)
                         Capsule()
                             .fill(selectedTab == page.rawValue ? Color(.label) : .clear)
-                            .frame(width: 86, height: 3)
+                            .frame(width: 72, height: 3)
                     }
-                    .foregroundStyle(selectedOption == page ? .background : .prime)
                 }
             }
             Divider()
@@ -44,16 +44,16 @@ struct BottomMenuView: View {
                 }
                 .foregroundStyle(Color(.label))
             }
-            Spacer()
+
         }
         .padding()
-        .frame(height: UIScreen.main.bounds.height / 1.5)
+        .frame(height: UIScreen.main.bounds.height / 1.3)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .transition(.move(edge: .bottom))
         .background(.white)
+        .transition(.move(edge: .bottom))
     }
 }
 
 #Preview {
-    BottomMenuView(isSeachViewHidden: .constant(false), isMenuShowing: .constant(true), selectedTab: .constant(0))
+    MenuView(isSeachViewHidden: .constant(false), isMenuShowing: .constant(true), selectedTab: .constant(0))
 }
