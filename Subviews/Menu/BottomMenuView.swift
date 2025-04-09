@@ -1,5 +1,5 @@
 //
-//  MenuView.swift
+//  SideMenuView.swift
 //  AmurFalcon
 //
 //  Created by Shaquille McGregor on 19/12/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MenuView: View {
+struct BottomMenuView: View {
     @State private var selectedOption: Page? = nil
     @Binding var isSeachViewHidden: Bool
     @Binding var isMenuShowing: Bool
@@ -15,6 +15,7 @@ struct MenuView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
+            SideMenuHeader()
             ForEach(Page.allCases) { page in
                 Button {
                     withAnimation(.easeInOut) {
@@ -24,13 +25,12 @@ struct MenuView: View {
                     }
                 } label: {
                     VStack(spacing: 4) {
-                        Text(page.title)
-                            .foregroundStyle(Color("icon"))
-                            .font(.system(size: 24))
+                        MenuRowView(page: page)
                         Capsule()
                             .fill(selectedTab == page.rawValue ? Color(.label) : .clear)
-                            .frame(width: 72, height: 3)
+                            .frame(width: 86, height: 3)
                     }
+                    .foregroundStyle(selectedOption == page ? .background : .prime)
                 }
             }
             Divider()
@@ -44,16 +44,16 @@ struct MenuView: View {
                 }
                 .foregroundStyle(Color(.label))
             }
-
+            Spacer()
         }
         .padding()
         .frame(height: UIScreen.main.bounds.height / 1.5)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.white)
         .transition(.move(edge: .bottom))
+        .background(.white)
     }
 }
 
 #Preview {
-    MenuView(isSeachViewHidden: .constant(false), isMenuShowing: .constant(true), selectedTab: .constant(0))
+    BottomMenuView(isSeachViewHidden: .constant(false), isMenuShowing: .constant(true), selectedTab: .constant(0))
 }
