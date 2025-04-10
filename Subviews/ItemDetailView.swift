@@ -1,5 +1,5 @@
 //
-//  ProductDetailView.swift
+//  ItemDetailView.swift
 //  AmurFalcon
 //
 //  Created by Shaquille McGregor on 22/12/2024.
@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-struct ProductDetailView: View {
+struct ItemDetailView: View {
     @State private var showFullDescription = false
     @State private var showSizeSheet = false
-    @Binding var isMenuShowing: Bool
+    let item: ClothingBarOptions
+    
     var body: some View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 18) {
                 ZStack(alignment: .top) {
                     selectedImage
-                    ShopHeaderView(isMenuShowing: $isMenuShowing)
+                    ShopHeaderView()
                         .foregroundStyle(Color("theme"))
                         .padding(.top, 64)
                         .padding(.horizontal)
@@ -51,10 +52,10 @@ struct ProductDetailView: View {
 }
 
 #Preview {
-    ProductDetailView(isMenuShowing: .constant(false))
+    ItemDetailView(item: .hoodies)
 }
 
-extension ProductDetailView {
+extension ItemDetailView {
     private var selectedImage: some View {
         Rectangle()
             .foregroundStyle(.icon)
